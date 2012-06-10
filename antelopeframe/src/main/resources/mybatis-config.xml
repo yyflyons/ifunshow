@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<!-- changes from the defaults -->
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+	
+    <!-- 扫描mapper文件 -->
+    <typeAliases>
+		<typeAlias alias="user" type="com.ifunshow.antelopeframe.entity.User" />
+		<typeAlias alias="role" type="com.ifunshow.antelopeframe.entity.Role" />
+	</typeAliases>
+	
+    <mappers>
+    	<mapper resource="com/ifunshow/antelopeframe/orm/mybatis/mapper/UserMapper.xml"/>
+    	<mapper resource="com/ifunshow/antelopeframe/orm/mybatis/mapper/RoleMapper.xml"/>
+    </mappers>
+    <!-- 扫描mapper文件
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.ifunshow.antelopeframe.orm.mapper" />
+    </bean>
+     -->
+</configuration>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="roleMapper">
+
+	<sql id="base_column">
+	    id, name
+	</sql>
+	
+	<select id="selectByEntity" parameterType="role" resultType="role">
+		select 
+		<include refid="base_column" />
+		from role
+	</select>
+	
+	<select id="selectByPrimaryKey" parameterType="int" resultType="role">
+		select 
+		<include refid="base_column" />
+		from role where id = #{id}
+	</select>
+	
+	<insert id="insert" parameterType="role">
+		insert into role (name) values (#{name})
+	</insert>
+	
+	<update id="update" parameterType="role">
+		update role 
+		<set>
+			<if test="name != null">
+				name = #{name},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from role where id = #{id}
+	</delete>
+</mapper>

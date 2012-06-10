@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>用户列表显示</title>
+		<#include "/common/meta.html"/>
+		<script type="text/javascript">
+		</script>
+	</head>
+	<body>
+		<h1>这是UserController对应的user_list.html</h1>
+		<form action="${ctx}/user" method="post">
+			<table width="70%" border="0" align="center" cellpadding="3" cellspacing="0">
+				<tr>
+					<td class="font_d3">姓名</td>
+					<td>
+						<input type="text" name="username" value="${(entity.username)!''}"/>
+					</td>
+					<td>
+						<input type="submit" value="查询" />
+					</td>
+				</tr>
+			</table>
+		</form>
+		<div>
+			<table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
+				<tr align="center">
+					<th>序号</th>
+					<th>姓名</th>
+				</tr>
+				<#if list??>
+	        		<#list list as entity>
+					<tr align="center">
+						<td>${entity.id}</td>
+						<td>${entity.username}</td>
+					</tr>
+					</#list>
+		        </#if>
+			</table>
+		</div>
+		<div>
+			<h3><a href="${ctx}/home">返回</a></h3>
+		</div>
+	</body>
+</html>

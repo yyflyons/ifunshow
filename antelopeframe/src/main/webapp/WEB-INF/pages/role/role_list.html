@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>角色列表显示</title>
+		<#include "/common/meta.html"/>
+		<script type="text/javascript">
+		</script>
+	</head>
+	<body>
+		<h1>这是RoleController对应的role_list.html</h1>
+		<div>
+			<div><h4>通过RoleController的redirect_user资源定位重定向到UserController</h4></div>
+			<h3><a href="${ctx}/role/redirect_user">点击链接，执行重定向，这个URL可以直接改为${ctx}/user</a></h3>
+			<h3><a href="${ctx}/role/new">新增</a></h3>
+		</div>
+		<div>
+			<table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
+				<tr align="center">
+					<th>序号</th>
+					<th>角色</th>
+					<th>操作</th>
+				</tr>
+				<#if list??>
+	        		<#list list as entity>
+					<tr align="center" bgcolor="#FFFFFF">
+						<td>${entity.id}</td>
+						<td>${(entity.name)!''}</td>
+						<td>
+							<a href="${ctx}/role/view/${entity.id}">详细</a>
+							<a href="${ctx}/role/edit/${entity.id}">修改</a>
+							<a href="${ctx}/role/delete/${entity.id}">删除</a>
+						</td>
+					</tr>
+					</#list>
+		        </#if>
+			</table>
+		</div>
+		<div>
+			<h3><a href="${ctx}/home">返回</a></h3>
+		</div>
+	</body>
+</html>

@@ -11,10 +11,11 @@
 
 	<description>Spring-web MVC配置</description>
 	
-	<!-- 对所有类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
-	<context:component-scan base-package="com.ifunshow.antelopeframe.web.controller">
-		<!-- <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" /> -->
-	</context:component-scan>
+	<!-- Maps '/' requests to the 'home' view 
+	<mvc:view-controller path="/" view-name="home"/> -->
+	
+	<!-- 对所有controller类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
+	<context:component-scan base-package="com.ifunshow.antelopeframe.web.controller" />
 	
 	<!-- 对静态资源文件的访问  方案一 （二选一）
 	<mvc:default-servlet-handler/>
@@ -31,15 +32,13 @@
 	<!-- 这两个类用来启动基于Spring MVC的注解功能，将控制器与方法映射加入到容器中 -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
-	
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+	<!-- 视图解析设置 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="cache" value="true" />
 		<!-- 模板后缀，指定html页面为模板 -->
 		<property name="suffix" value=".html" />
 		<!-- 使用这个模板类来解析视图 -->
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
 		<property name="exposeSpringMacroHelpers" value="true" />
 		<!-- 允许访问请求属性，默认为false -->
 		<property name="exposeRequestAttributes" value="true" />
@@ -50,11 +49,10 @@
 		<!-- 模板输出内容编码，此处应与defaultEncoding保持一致 -->
 		<property name="contentType" value="text/html;charset=UTF-8" />
 	</bean>
-
-	<bean id="freemarkerConfig"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+	<!-- 视图freemarker设置 -->
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
 		<!-- 模板文件所在目录 -->
-		<property name="templateLoaderPath" value="/WEB-INF/pages/" />
+		<property name="templateLoaderPath" value="/WEB-INF/views/" />
 		<!-- 指定FreeMarker模板文件的编码格式 -->
 		<property name="defaultEncoding" value="UTF-8" />
 		<!-- FreeMarker属性配置 -->

@@ -6,8 +6,10 @@ import java.util.List;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 /**
+ * AntelopeFramework
+ * 
  * MyBatis的Dao基类
- * @author Antelope-羚羊
+ * @author yyflyons
  */
 public class MyBatisDao extends SqlSessionDaoSupport{
 	

@@ -1,23 +1,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 	<head>
 		<title>HomeController</title>
 		<#include "/common/meta.html"/>
-		<script type="text/javascript" src="${ctx}/resources/scripts/jquery-1.7.2.js"></script>
+		<script type="text/javascript" src="${ctx}/resources/scripts/jquery-1.7.2/jquery-1.7.2.js"></script>
 		<script type="text/javascript">
-			$("#springBean").click(function() {
+			function test() {
 				$.ajax({
-					url : this.href,
+					url : '${ctx}/home/springBean/myBatisDao',
 					dataType : "json",
 					success : function(json) {
-						alert(json);
+						alert(json.logger.name);
 					},
 					error : function(xhr) {
 						alert(xhr);
 					}
 				});
 				return false;
-			});
+			}
 		</script>
 	</head>
 	<body>
@@ -29,7 +29,7 @@
 			<h3><a href="${ctx}/role">点击链接2，执行RoleController</a></h3>
 		</div>
 		<div>
-			<h3><a id="springBean" href="${ctx}/home/springBean/sqlSessionFactory">获取sqlSessionFactory的bean</a></h3>
+			<h3><a id="springBean" href="#"  onclick="test();">获取sqlSessionFactory的bean</a></h3>
 		</div>
 	</body>
 </html>

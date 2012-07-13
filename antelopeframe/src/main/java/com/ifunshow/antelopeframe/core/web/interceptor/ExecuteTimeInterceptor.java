@@ -34,8 +34,8 @@ public class ExecuteTimeInterceptor extends HandlerInterceptorAdapter{
 		modelAndView.addObject("executeTime",executeTime);
  
 		//log it
-		if(logger.isDebugEnabled()){
-		   logger.debug("[" + handler + "] executeTime : " + executeTime + "ms");
+		if(logger.isDebugEnabled()){			
+		   logger.debug(request.getRequestURI()+"-[" + handler + "] executeTime : " + executeTime + "ms");
 		}
 	}
 }

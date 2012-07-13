@@ -20,6 +20,12 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("/login")
+	public String login(){
+		return "login";
+	}
+	
+	
 	@RequestMapping("/home/springBean/{beanName}")
 	@ResponseBody
 	public Model queryBeanByName(Model model, @PathVariable String beanName){

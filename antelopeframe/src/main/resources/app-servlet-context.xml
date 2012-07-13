@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+	http://www.springframework.org/schema/mvc 
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<description>Spring-web MVC配置</description>
+	
+	<!-- 当请求应用程序首页时，将执行/home请求，还可以设定成redirect -->
+	<mvc:view-controller path="/" view-name="forward:/home" />
+	
+	<!-- 对所有controller类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
+	<context:component-scan base-package="com.ifunshow.antelopeframe.web.controller" />
+	
+	<!-- 用于持有ApplicationContext,可以使用SpringContextHolder.getBean('xxxx')的静态方法得到spring bean对象 -->
+	<bean class="com.ifunshow.antelopeframe.core.web.SpringContextHolder" lazy-init="false" />
+	
+	<!-- 对静态资源文件的访问  方案一 （二选一）
+	<mvc:default-servlet-handler/>
+	-->
+	<!-- 对静态资源文件的访问  方案二 （二选一）	-->
+	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="31556926"/>
+
+	<!-- <mvc:annotation-driven /> 是一种简写形式，完全可以手动配置替代这种简写形式，简写形式可以让初学都快速应用默认配置方案。
+	     <mvc:annotation-driven /> 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,是spring MVC为@Controllers分发请求所必须的。
+	         并提供了：数据绑定支持，@NumberFormatannotation支持，@DateTimeFormat支持，@Valid支持，读写XML的支持（JAXB），读写JSON的支持（Jackson）。
+	-->
+	<!-- 这两个类用来启动基于Spring MVC的注解功能，将控制器与方法映射加入到容器中
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" /> -->
+	
+	
+	<!-- 日志拦截器
+    <bean id="logInteceptor" class="com.ifunshow.antelopeframe.core.web.interceptor.LogInteceptor"/>
+    -->
+    <!-- 权限拦截器
+    <bean id="myPermissionsInteceptor" class="com.xxx.userplatform.mvc.MyPermissionsInteceptor"></bean>
+    -->
+    <!-- RequestHelper拦截器
+    <bean id="myRequestHelperInteceptor" class="com.xxx.core.web.MyRequestHelperInteceptor"></bean>
+    -->
+    <!-- 执行时间拦截器    -->
+    <bean id="executeTimeInterceptor" class="com.ifunshow.antelopeframe.core.web.interceptor.ExecuteTimeInterceptor"></bean>
+
+    <!-- 注解请求映射  -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">        
+		<property name="interceptors">
+		    <list>
+		    	<!-- <ref bean="logInteceptor"/>日志拦截器 -->
+		    	<!-- <ref bean="myRequestHelperInteceptor"/>RequestHelper拦截器-->
+		    	<!-- <ref bean="myPermissionsInteceptor"/>权限拦截器-->
+		    	<ref bean="executeTimeInterceptor"/><!-- 执行时间拦截器-->
+		    </list>
+		</property>        
+	</bean>  	
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">  
+			<list>
+				<ref bean="byteArray_hmc" /><!--  -->
+				<ref bean="string_hmc" />
+				<ref bean="resource_hmc" /><!--  -->
+				<ref bean="source_hmc" /><!--  -->
+				<ref bean="xmlAwareForm_hmc" /><!--  -->
+				<ref bean="jaxb2RootElement_hmc" /><!--   -->
+				<ref bean="jackson_hmc" />
+			</list>
+		</property>
+	</bean>
+	<bean id="byteArray_hmc" class="org.springframework.http.converter.ByteArrayHttpMessageConverter" /><!-- 处理.. -->
+	<bean id="string_hmc" class="org.springframework.http.converter.StringHttpMessageConverter" /><!-- 处理.. -->
+	<bean id="resource_hmc" class="org.springframework.http.converter.ResourceHttpMessageConverter" /><!-- 处理.. -->
+	<bean id="source_hmc" class="org.springframework.http.converter.xml.SourceHttpMessageConverter" /><!-- 处理.. -->
+	<bean id="xmlAwareForm_hmc" class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter" /><!-- 处理.. -->
+	<bean id="jaxb2RootElement_hmc" class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" /><!-- 处理.. -->
+	<bean id="jackson_hmc" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" /><!-- 处理json-->	
+
+	<!-- 视图解析设置 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="cache" value="true" />
+		<!-- 模板后缀，指定html页面为模板 -->
+		<property name="suffix" value=".html" />
+		<!-- 使用这个模板类来解析视图 -->
+		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+		<!-- 宏命令的支持  -->
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<!-- 允许访问请求属性，默认为false -->
+		<property name="exposeRequestAttributes" value="true" />
+		<!-- 允许访问会话属性，默认为false -->
+		<property name="exposeSessionAttributes" value="true" />
+		<!-- 页面上下文，类似于request.contextPath -->
+		<property name="requestContextAttribute" value="rc" />
+		<!-- 模板输出内容编码，此处应与defaultEncoding保持一致 -->
+		<property name="contentType" value="text/html;charset=UTF-8" />
+	</bean>
+	<!-- 视图freemarker设置 -->
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<!-- 模板文件所在目录 -->
+		<property name="templateLoaderPath" value="/WEB-INF/views/" />
+		<!-- 指定FreeMarker模板文件的编码格式 -->
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- FreeMarker属性配置 -->
+		<property name="freemarkerSettings">
+			<props>
+				<!-- 
+					每隔5小时检查模板是否更新，单位为秒
+					如果不经常更新模板可将更新的延迟时间设定长一点
+				-->
+				<prop key="template_update_delay">60</prop>
+				<!-- 指定地区语言环境，我们的语言是中文 -->
+				<prop key="locale">zh_CN</prop>
+			</props>
+		</property>
+	</bean>	
+</beans>

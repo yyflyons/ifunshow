@@ -3,7 +3,21 @@
 	<head>
 		<title>HomeController</title>
 		<#include "/common/meta.html"/>
+		<script type="text/javascript" src="${ctx}/resources/scripts/jquery-1.7.2.js"></script>
 		<script type="text/javascript">
+			$("#springBean").click(function() {
+				$.ajax({
+					url : this.href,
+					dataType : "json",
+					success : function(json) {
+						alert(json);
+					},
+					error : function(xhr) {
+						alert(xhr);
+					}
+				});
+				return false;
+			});
 		</script>
 	</head>
 	<body>
@@ -13,6 +27,9 @@
 		</div>
 		<div>
 			<h3><a href="${ctx}/role">点击链接2，执行RoleController</a></h3>
+		</div>
+		<div>
+			<h3><a id="springBean" href="${ctx}/home/springBean/sqlSessionFactory">获取sqlSessionFactory的bean</a></h3>
 		</div>
 	</body>
 </html>

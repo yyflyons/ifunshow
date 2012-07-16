@@ -14,7 +14,11 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
+	<!-- Introspector 缓存清除监听器 -->
+	<listener>
+	    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+	
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

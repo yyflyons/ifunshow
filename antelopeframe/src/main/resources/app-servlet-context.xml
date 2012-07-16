@@ -46,16 +46,16 @@
     <bean id="myRequestHelperInteceptor" class="com.xxx.core.web.MyRequestHelperInteceptor"></bean>
     -->
     <!-- 执行时间拦截器    -->
-    <bean id="executeTimeInterceptor" class="com.ifunshow.antelopeframe.core.web.interceptor.ExecuteTimeInterceptor"></bean>
+    <bean id="logExecuteInterceptor" class="com.ifunshow.antelopeframe.core.web.interceptor.LogExecuteInterceptor"></bean>
 	<!-- 登录检查拦截器    -->
     <bean id="checkLoginInterceptor" class="com.ifunshow.antelopeframe.core.web.interceptor.CheckLoginInterceptor">
     	<property name="sessionKey" value="current_user" />
-    	<property name="loginUri" value="/login" />
+    	<property name="loginUri" value="/login/goLogin" />
     	<property name="excludeCheckUris">
     		<list>
-    			<value>/home</value>
-    			<value>/login</value>
-    			<value>/role/*</value>
+    			<value>/login/goLogin</value>
+    			<value>/login/in</value>
+    			<value>/login/out</value>
     		</list>
     	</property>
     </bean>
@@ -68,10 +68,10 @@
 		    	<!-- <ref bean="myRequestHelperInteceptor"/>RequestHelper拦截器-->
 		    	<!-- <ref bean="myPermissionsInteceptor"/>权限拦截器-->
 		    	<ref bean="checkLoginInterceptor"/><!-- 登录检查拦截器-->
-		    	<ref bean="executeTimeInterceptor"/><!-- 执行时间拦截器-->
+		    	<ref bean="logExecuteInterceptor"/><!-- 执行时间拦截器-->
 		    </list>
 		</property>
-	</bean>  	
+	</bean>
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">  
 			<list>

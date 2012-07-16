@@ -15,19 +15,24 @@ import com.ifunshow.antelopeframe.core.web.SpringContextHolder;
  * @author Antelope-羚羊
  */
 @Controller
-public class HomeController {
+@RequestMapping("/login")
+public class LoginController {
+	
+	@RequestMapping("/goLogin")
+	public String goLogin(HttpServletRequest request){
+		return "login";
+	}
 
-	@RequestMapping("/home")
-	public String home(){
+	@RequestMapping("/in")
+	public String login(HttpServletRequest request){
+		request.getSession().setAttribute("current_user", new Object());
 		return "home";
 	}
 	
-	@RequestMapping("/home/springBean/{beanName}")
-	@ResponseBody
-	public Model queryBeanByName(Model model, @PathVariable String beanName){
-		model.addAttribute(beanName, SpringContextHolder.getBean(beanName));
-		return model;
+	@RequestMapping("/out")
+	public String unlogin(HttpServletRequest request){
+		request.getSession().removeAttribute("current_user");
+		return "home";
 	}
-	
 	
 }

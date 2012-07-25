@@ -27,7 +27,7 @@ public class LogExecuteInterceptor extends HandlerInterceptorAdapter{
 	}
  
 	//after the handler is executed
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,ModelAndView modelAndView) throws Exception {
  
 		SystemLog systemLog = (SystemLog)request.getAttribute("systemLog");
 		systemLog.setRequest_end_time(System.currentTimeMillis());

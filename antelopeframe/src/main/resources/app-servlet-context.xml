@@ -19,7 +19,7 @@
 	<context:component-scan base-package="com.ifunshow.antelopeframe.web.controller" />
 	
 	<!-- 用于持有ApplicationContext,可以使用SpringContextHolder.getBean('xxxx')的静态方法得到spring bean对象 -->
-	<bean class="com.ifunshow.antelopeframe.core.web.SpringContextHolder" lazy-init="false" />
+	<bean class="com.ifunshow.antelopeframe.core.extensions.application.SpringContextHolder" lazy-init="false" />
 	
 	<!-- 对静态资源文件的访问  方案一 （二选一）
 	<mvc:default-servlet-handler/>
@@ -35,6 +35,18 @@
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" /> -->
 	
+	<!-- 异常处理类，改造自Spring的SimpleMappingExceptionResolver而来
+	<bean id="exceptionHandler" class="com.ifunshow.antelopeframe.core.web.exception.SimpleMappingExceptionResolver" >
+	  	<property name="defaultErrorView">
+   			<value>/error.html</value>
+  		</property>
+	 	<property name="exceptionMappings">
+	   		<props>
+				<prop key="java.lang.Exception">/error.html</prop>
+	   		</props> 
+	  	</property>
+	</bean> -->
+	<bean id="exceptionHandler" class="com.ifunshow.antelopeframe.core.web.exception.AntelopeDefaultExceptionHandler" />
 	
 	<!-- 日志拦截器
     <bean id="logInteceptor" class="com.ifunshow.antelopeframe.core.web.interceptor.LogInteceptor"/>

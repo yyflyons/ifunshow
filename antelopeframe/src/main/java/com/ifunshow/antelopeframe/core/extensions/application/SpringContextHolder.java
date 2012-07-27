@@ -1,4 +1,4 @@
-package com.ifunshow.antelopeframe.core.web;
+package com.ifunshow.antelopeframe.core.extensions.application;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

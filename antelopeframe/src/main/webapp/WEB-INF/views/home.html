@@ -10,7 +10,7 @@
 					url : '${ctx}/home/springBean/myBatisDao',
 					dataType : "json",
 					success : function(json) {
-						alert(json.logger.name);
+						alert(json.message);
 					},
 					error : function(xhr) {
 						alert(xhr);
@@ -21,35 +21,18 @@
 		</script>
 	</head>
 	<body>
-		  <TABLE border="1" cellpadding="1">
-		  <TR>
-			<TD></TD>
-			<TD><a href="${ctx}/user">点击链接1，执行UserController</a></TD>
-			<TD><a href="${ctx}/role">点击链接2，执行RoleController</a></TD>
-			<TD><a id="springBean" href="#"  onclick="test();">获取sqlSessionFactory的bean</a></TD>
-			<TD></TD>
-		  </TR>
-		  <TR>
-			<TD></TD>
-			<TD><a href="${ctx}/login/goLogin">去登录</a></TD>
-			<TD><a href="${ctx}/login/out">登出</a></TD>
-			<TD></TD>
-			<TD></TD>
-		  </TR>
-		  <TR>
-			<TD></TD>
-			<TD></TD>
-			<TD></TD>
-			<TD></TD>
-			<TD></TD>
-		  </TR>
-		  <TR>
-			<TD></TD>
-			<TD></TD>
-			<TD></TD>
-			<TD></TD>
-			<TD></TD>
-		  </TR>
-		  </TABLE>
+		<hr>
+		<a href="${ctx}/user">点击链接1，执行UserController</a></TD>&nbsp;&nbsp;|&nbsp;&nbsp;
+		<a href="${ctx}/role">点击链接2，执行RoleController</a>
+		<hr>
+		<a id="springBean" href="#"  onclick="test();">获取sqlSessionFactory的bean</a>
+		<hr>
+		<a href="${ctx}/login/goLogin">去登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		<a href="${ctx}/login/out">登出</a>
+		<hr>
+		<a href="${ctx}/testException">testException</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		<a href="${ctx}/testException/testBusinessException">testBusinessException</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		<a href="${ctx}/testException/testParameterException?name=abc">testParameterException</a>
+		<a href="${ctx}/testException/validatePara?name=abc">testParameterException</a>
 	</body>
 </html>

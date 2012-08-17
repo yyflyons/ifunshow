@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import com.ifunshow.antelopeframe.entity.User;
+import com.ifunshow.antelopeframe.web.base.BaseService;
 
 /**
  * 人员管理

@@ -1,7 +1,5 @@
 package com.ifunshow.antelopeframe.web.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,13 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ifunshow.antelopeframe.core.extensions.application.SpringContextHolder;
+import com.ifunshow.antelopeframe.web.base.BaseController;
 
 /**
  * 欢迎页面
  * @author Antelope-羚羊
  */
 @Controller
-public class HomeController {
+public class HomeController extends BaseController{
 
 	@RequestMapping("/home")
 	public String home(){

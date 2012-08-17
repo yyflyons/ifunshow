@@ -1,4 +1,4 @@
-package com.ifunshow.antelopeframe.web.service;
+package com.ifunshow.antelopeframe.web.base;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import com.ifunshow.antelopeframe.orm.mybatis.MyBatisDao;

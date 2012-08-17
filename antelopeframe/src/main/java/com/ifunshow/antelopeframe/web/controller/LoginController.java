@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ifunshow.antelopeframe.core.extensions.application.SpringContextHolder;
+import com.ifunshow.antelopeframe.web.base.BaseController;
 
 /**
  * 欢迎页面
@@ -16,7 +17,7 @@ import com.ifunshow.antelopeframe.core.extensions.application.SpringContextHolde
  */
 @Controller
 @RequestMapping("/login")
-public class LoginController {
+public class LoginController  extends BaseController{
 	
 	@RequestMapping("/goLogin")
 	public String goLogin(HttpServletRequest request){

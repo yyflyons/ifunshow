@@ -13,7 +13,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
  */
 public class MyBatisDao extends SqlSessionDaoSupport{
 	
-	public void save(String key, Object object) {
+	public void add(String key, Object object) {
 		getSqlSession().insert(key, object);
 	}
 	

@@ -3,7 +3,6 @@ package com.ifunshow.antelopeframe.web.controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -14,9 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.ifunshow.antelopeframe.core.extensions.exception.BusinessException;
 import com.ifunshow.antelopeframe.entity.User;
+import com.ifunshow.antelopeframe.web.base.BaseController;
 import com.ifunshow.antelopeframe.web.service.UserService;
 
 /**
@@ -26,7 +24,7 @@ import com.ifunshow.antelopeframe.web.service.UserService;
  */
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController  extends BaseController{
 
 	@Autowired
 	private UserService userService;

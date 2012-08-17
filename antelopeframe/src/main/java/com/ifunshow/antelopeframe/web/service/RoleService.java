@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import com.ifunshow.antelopeframe.entity.Role;
+import com.ifunshow.antelopeframe.web.base.BaseService;
 
 /**
  * 角色管理
@@ -22,7 +23,7 @@ public class RoleService extends BaseService{
 	
 	public void save(Role role){
 		if(role.getId() == null)
-			super.getMyBatisDao().save("roleMapper.insert", role);
+			super.getMyBatisDao().add("roleMapper.insert", role);
 		else
 			super.getMyBatisDao().update("roleMapper.update", role);
 	}

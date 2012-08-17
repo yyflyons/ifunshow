@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ifunshow.antelopeframe.core.extensions.exception.BusinessException;
 import com.ifunshow.antelopeframe.core.extensions.exception.ParameterException;
 import com.ifunshow.antelopeframe.entity.User;
+import com.ifunshow.antelopeframe.web.base.BaseController;
 import com.ifunshow.antelopeframe.web.service.UserService;
 
 /**
@@ -19,7 +20,7 @@ import com.ifunshow.antelopeframe.web.service.UserService;
  */
 @Controller
 @RequestMapping("/testException")
-public class TestExceptionController {
+public class TestExceptionController  extends BaseController{
 
 	@Autowired
 	private UserService userService;

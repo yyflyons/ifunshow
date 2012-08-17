@@ -6,10 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ifunshow.antelopeframe.core.extensions.exception.BusinessException;
 import com.ifunshow.antelopeframe.core.extensions.exception.ParameterException;
 import com.ifunshow.antelopeframe.entity.Role;
+import com.ifunshow.antelopeframe.web.base.BaseController;
 import com.ifunshow.antelopeframe.web.service.RoleService;
 
 /**
@@ -18,7 +20,7 @@ import com.ifunshow.antelopeframe.web.service.RoleService;
  */
 @Controller
 @RequestMapping("/role")
-public class RoleController {
+public class RoleController  extends BaseController{
 
 	@Autowired
 	private RoleService roleService;
@@ -27,6 +29,13 @@ public class RoleController {
 	public String list(Model model){
 		model.addAttribute("list", roleService.getRoles());
 		return "role/role_list";
+	}
+	
+	@RequestMapping(value="/list", method = RequestMethod.GET)
+	@ResponseBody
+	public Model list2(Model model){
+		model.addAttribute("list", roleService.getRoles());
+		return model;
 	}
 	
 	@RequestMapping(value="/new", method = RequestMethod.GET)

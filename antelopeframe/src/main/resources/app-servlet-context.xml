@@ -136,7 +136,7 @@
 					每隔5小时检查模板是否更新，单位为秒
 					如果不经常更新模板可将更新的延迟时间设定长一点
 				-->
-				<prop key="template_update_delay">60</prop>
+				<prop key="template_update_delay">10</prop>
 				<!-- 指定地区语言环境，我们的语言是中文 -->
 				<prop key="locale">zh_CN</prop>
 			</props>

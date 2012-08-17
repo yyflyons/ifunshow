@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<#include "/common/meta.html"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<LINK rel="apple-touch-icon" href="${ctx}/resources/pjpx/pjax-57.png" sizes="57x57">
+<LINK rel="apple-touch-icon" href="${ctx}/resources/pjpx/pjax-72.png" sizes="72x72">
+<LINK rel="apple-touch-icon" href="${ctx}/resources/pjpx/pjax-114.png" sizes="114x114">
+<SCRIPT src="${ctx}/resources/pjpx/jquery.js"></SCRIPT>
+<BODY>
+<a href='${ctx}/user' target='#main'>Explore1</a>
+<a href='${ctx}/role/list' target='#main'>Explore2</a>
+<DIV id="main">
+  <IMG title="aliens" src="${ctx}/resources/pjpx/aliens.jpg">
+</DIV>
+
+<SCRIPT type="text/javascript">
+	$("a").click(function() {
+		var link = $(this);
+		$.ajax({
+			url : link.attr("href"),
+			dataType : "html",
+			success : function(result) {
+				$(link.attr("target")).html(result);
+			},
+			error : function(xhr) {
+				$(link.attr("target")).html(xhr.responseText);
+			}
+		});
+		return false;
+	});
+</SCRIPT>
+</BODY>
+</HTML>
+

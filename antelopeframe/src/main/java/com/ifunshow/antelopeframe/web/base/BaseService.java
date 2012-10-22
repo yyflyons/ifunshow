@@ -5,7 +5,7 @@ import com.ifunshow.antelopeframe.orm.mybatis.MyBatisDao;
 
 /**
  * 基础service 所有业务Service都继承此类
- * @author Antelope-羚羊
+ * @author yyflyons-于亚丰
  */
 
 public class BaseService {

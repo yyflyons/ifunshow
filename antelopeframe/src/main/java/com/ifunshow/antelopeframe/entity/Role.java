@@ -2,7 +2,7 @@ package com.ifunshow.antelopeframe.entity;
 
 /**
  * 角色管理
- * @author Antelope-羚羊
+ * @author yyflyons-于亚丰
  */
 public class Role {
 

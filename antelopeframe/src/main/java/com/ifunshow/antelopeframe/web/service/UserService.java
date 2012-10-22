@@ -8,7 +8,7 @@ import com.ifunshow.antelopeframe.web.base.BaseService;
 
 /**
  * 人员管理
- * @author Antelope-羚羊
+ * @author yyflyons-于亚丰
  */
 @Service
 public class UserService extends BaseService{
@@ -17,10 +17,10 @@ public class UserService extends BaseService{
 	 * 根据条件查询
 	 */
 	public List queryResult(User user){
-		return super.getMyBatisDao().getList("userMapper.selectByQuery",user);
+		return super.getMyBatisDao().queryForList("userMapper.selectByQuery",user);
 	}
 	
 	public User getUser(Serializable id){
-		return super.getMyBatisDao().get("userMapper.selectByPrimaryKey",id);
+		return super.getMyBatisDao().queryForOne("userMapper.selectByPrimaryKey",id);
 	}
 }

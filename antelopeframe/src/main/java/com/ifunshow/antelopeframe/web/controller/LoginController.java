@@ -13,7 +13,7 @@ import com.ifunshow.antelopeframe.web.base.BaseController;
 
 /**
  * 欢迎页面
- * @author Antelope-羚羊
+ * @author yyflyons-于亚丰
  */
 @Controller
 @RequestMapping("/login")

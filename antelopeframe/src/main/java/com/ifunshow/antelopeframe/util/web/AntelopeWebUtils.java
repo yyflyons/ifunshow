@@ -6,7 +6,7 @@ import org.springframework.web.util.WebUtils;
 
 /**
  * web工具类
- * @author yuyf
+ * @author yyflyons-于亚丰
  * 
  */
 public class AntelopeWebUtils extends WebUtils{

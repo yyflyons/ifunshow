@@ -8,17 +8,17 @@ import com.ifunshow.antelopeframe.web.base.BaseService;
 
 /**
  * 角色管理
- * @author Antelope-羚羊
+ * @author yyflyons-于亚丰
  */
 @Service
 public class RoleService extends BaseService{
 	
 	public List<Role> getRoles(){
-		return super.getMyBatisDao().getList("roleMapper.selectByEntity");
+		return super.getMyBatisDao().queryForList("roleMapper.selectByEntity");
 	}
 	
 	public Role getRole(Serializable id){
-		return super.getMyBatisDao().get("roleMapper.selectByPrimaryKey",id);
+		return super.getMyBatisDao().queryForOne("roleMapper.selectByPrimaryKey",id);
 	}
 	
 	public void save(Role role){

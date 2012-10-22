@@ -9,7 +9,7 @@
 	<select id="selectByQuery" parameterType="user" resultType="user">
 		select 
 		<include refid="base_column" />
-		from user 
+		from user
 		<where>
 			<if test="username != null and username != ''">
 				username like "%"#{username}"%"

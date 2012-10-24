@@ -66,8 +66,8 @@
     	<property name="excludeCheckUris">
     		<list>
     			<value>/login/goLogin</value>
-    			<value>/login/in</value>
-    			<value>/login/out</value>
+    			<value>/login/signin</value>
+    			<value>/login/signout</value>
     		</list>
     	</property>
     </bean>

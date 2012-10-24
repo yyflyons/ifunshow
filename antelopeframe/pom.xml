@@ -11,6 +11,24 @@
 		<spring.version>3.1.1.RELEASE</spring.version>
 		<aspectj.version>1.6.12</aspectj.version>
 	</properties>
+	<repositories>
+		<repository>
+			<id>offical</id>
+			<name>Maven Official Repository</name>
+			<url>http://repo1.maven.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>org.springframework.maven.milestone</id>
+			<name>Spring Maven Milestone Repository</name>
+			<url>http://maven.springframework.org/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -121,7 +139,19 @@
 			<artifactId>validation-api</artifactId>
 			<version>1.0.0.GA</version>
 		</dependency>
+		<dependency>
+			<groupId>org.cloudfoundry</groupId>
+			<artifactId>cloudfoundry-runtime</artifactId>
+			<version>0.8.2</version>
+		</dependency>
 	</dependencies>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>repository.springframework.maven.milestone</id>
+			<name>Spring Framework Maven Milestone Repository</name>
+			<url>http://maven.springframework.org/milestone</url>
+		</pluginRepository>
+	</pluginRepositories>
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -149,6 +179,19 @@
 						<stopKey>foo</stopKey>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.cloudfoundry</groupId>
+					<artifactId>cf-maven-plugin</artifactId>
+					<version>1.0.0.M3</version>
+					<configuration>
+						<server>mycloudfoundry-instance</server>
+						<target>http://api.cloudfoundry.com</target> 
+						<!-- target发布的目标，如果是本地需修改-->
+						<memory>512</memory>
+						<services>mysql</services> 
+						<!-- services绑定服务，如果多个用逗号隔开-->
+					</configuration>
+				</plugin>	
 			</plugins>
 		</pluginManagement>
 	</build>

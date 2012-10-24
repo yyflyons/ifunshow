@@ -4,6 +4,7 @@
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:cloud="http://schema.cloudfoundry.org/spring"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
 	http://www.springframework.org/schema/tx 
@@ -11,7 +12,9 @@
 	http://www.springframework.org/schema/aop 
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
     http://www.springframework.org/schema/context 
-	http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://schema.cloudfoundry.org/spring
+    http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd"
 	default-autowire="byName" default-lazy-init="true">
 
 	<description>Spring-Database配置</description>
@@ -31,7 +34,7 @@
 	<bean id="myBatisDao" class="com.ifunshow.antelopeframe.orm.mybatis.MyBatisDao" />
 
 	<!-- 数据源配置,使用数据库连接池 -->
-	<!-- c3p0 -->
+	<!-- c3p0
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="${jdbc.driver}" />
         <property name="jdbcUrl" value="${jdbc.url}" />
@@ -40,8 +43,11 @@
         <property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
         <property name="minPoolSize" value="${jdbc.minPoolSize}" />
         <property name="initialPoolSize" value="${jdbc.initialPoolSize}" />
-		<property name="preferredTestQuery" value="${jdbc.preferredTestQuery}" /> 
-    </bean>
+		<property name="preferredTestQuery" value="${jdbc.preferredTestQuery}" />
+    </bean> -->
+    
+	<!-- CF数据源 -->
+	<cloud:data-source id="dataSource"></cloud:data-source>
 
 	<!-- mybatis配置 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

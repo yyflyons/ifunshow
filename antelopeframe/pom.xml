@@ -185,11 +185,11 @@
 					<version>1.0.0.M3</version>
 					<configuration>
 						<server>mycloudfoundry-instance</server>
-						<target>http://api.cloudfoundry.com</target> 
 						<!-- target发布的目标，如果是本地需修改-->
+						<target>http://api.cloudfoundry.com</target> 
 						<memory>512</memory>
-						<services>mysql</services> 
 						<!-- services绑定服务，如果多个用逗号隔开-->
+						<services>mysql</services> 
 					</configuration>
 				</plugin>	
 			</plugins>

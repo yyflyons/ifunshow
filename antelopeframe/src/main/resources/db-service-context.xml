@@ -33,7 +33,7 @@
 	<!-- mybatis Dao -->
 	<bean id="myBatisDao" class="com.ifunshow.antelopeframe.orm.mybatis.MyBatisDao" />
 
-	<!-- 数据源配置,使用数据库连接池 -->
+	<!-- 本地数据源配置,使用数据库连接池 -->
 	<!-- c3p0
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="${jdbc.driver}" />
@@ -46,7 +46,7 @@
 		<property name="preferredTestQuery" value="${jdbc.preferredTestQuery}" />
     </bean> -->
     
-	<!-- CF数据源 -->
+	<!-- CF数据源配置 -->
 	<cloud:data-source id="dataSource"></cloud:data-source>
 
 	<!-- mybatis配置 -->
